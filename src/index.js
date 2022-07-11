@@ -1,9 +1,8 @@
 import { cwd } from 'process';
 import path from 'path';
 import { readFileSync } from 'fs';
-import _ from 'lodash';
+import compare from './compare.js';
 
-// функция определения формата
 const getFormat = (filePath) => {
   const arrayPath = filePath.split('.');
   const extension = arrayPath.slice(-1);
@@ -11,39 +10,9 @@ const getFormat = (filePath) => {
   return extension[0];
 };
 
-const compareKeys = (obj1, obj2) => {
-  const keys = Object.keys(obj1);
-  for (const key in obj2) {
-    keys.push(key);
-  }
-  const uniqeKeys = _.sortBy(_.uniq(keys));
-  const result = uniqeKeys.reduce((acc, key) => {
-    const firstValue = obj1[key];
-    const secondValue = obj2[key];
-
-    if (firstValue === secondValue) {
-      acc += `    ${key}: ${secondValue}\n`;
-      return acc;
-    }
-    if (firstValue === undefined) {
-      acc += `  + ${key}: ${secondValue}\n`;
-      return acc;
-    }
-    if (secondValue === undefined) {
-      acc += `  - ${key}: ${firstValue}\n`;
-      return acc;
-    }
-    acc += `  - ${key}: ${firstValue}\n`;
-    acc += `  + ${key}: ${secondValue}\n`;
-
-    return acc;
-  }, "");
-  return result;
-};
-
 const workWithJson = (filePath) => {
   const currentPath = cwd();
-  const findFile = readFileSync(currentPath + '/src/test_files/' + filePath);
+  const findFile = readFileSync(path.resolve(currentPath, '__fixtures__/', filePath), 'utf-8');
   const readFile = JSON.parse(findFile);
   return readFile;
 };
@@ -62,7 +31,7 @@ const genDiff = (file1, file2) => {
     readFile2 = workWithJson(file2);
   }
 
-  console.log(`{\n${compareKeys(readFile1, readFile2)}}`);
+  console.log(`{\n${compare(readFile1, readFile2)}}`);
 };
 
 export default genDiff;
