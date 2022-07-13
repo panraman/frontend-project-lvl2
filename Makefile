@@ -1,4 +1,4 @@
 lint: # проверка линтёром
 		npx eslint .
 test: # запуск тестирования
-		npm run test
+		NODE_OPTIONS=--experimental-vm-modules npx jest

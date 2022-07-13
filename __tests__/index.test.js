@@ -10,5 +10,9 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => resolve(__dirname, '..', '__fixtures__', filename);
 
 test('format get test', () => {
-  expect(genDiff(getFixturePath('file1.json'), getFixturePath('emptyFile.json'))).toBe(getFixturePath('file1_emptyFile.txt'));
+  const fullFile = getFixturePath('file1.json');
+  const emptyFile = getFixturePath('emptyFile.json');
+  expect(genDiff(fullFile, emptyFile)).toBe(getFixturePath('file1_emptyFile.txt'));
+  expect(genDiff(emptyFile, fullFile)).toBe(getFixturePath('file1_emptyFile.txt'));
+  expect(genDiff(fullFile, fullFile)).toBe(getFixturePath('file1_file1.txt'));
 });
