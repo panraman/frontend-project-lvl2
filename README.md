@@ -7,5 +7,8 @@
 ### Makelint: 
 [![makelint](https://github.com/panraman/frontend-project-lvl2/actions/workflows/makelint.yml/badge.svg)](https://github.com/panraman/frontend-project-lvl2/actions/workflows/makelint.yml)
 
+### Maketests: 
+[![maketests](https://github.com/panraman/frontend-project-lvl2/actions/workflows/maketest.yml/badge.svg)](https://github.com/panraman/frontend-project-lvl2/actions/workflows/maketest.yml)
+
 ### Gendiff launch example with JSON: 
 [![asciicast](https://asciinema.org/a/PSZzxyZifVMqHdr1LEw36ZZhF.svg)](https://asciinema.org/a/PSZzxyZifVMqHdr1LEw36ZZhF)
