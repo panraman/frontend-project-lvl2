@@ -4,6 +4,9 @@
 ### Maintainability: 
 [![Maintainability](https://api.codeclimate.com/v1/badges/40dfb6d4e8f3daa3aeb0/maintainability)](https://codeclimate.com/github/panraman/frontend-project-lvl2/maintainability)
 
+### Test Coverage: 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/40dfb6d4e8f3daa3aeb0/test_coverage)](https://codeclimate.com/github/panraman/frontend-project-lvl2/test_coverage)
+
 ### Makelint/test: 
 [![makelint](https://github.com/panraman/frontend-project-lvl2/actions/workflows/makelint.yml/badge.svg)](https://github.com/panraman/frontend-project-lvl2/actions/workflows/makelint.yml)
 
