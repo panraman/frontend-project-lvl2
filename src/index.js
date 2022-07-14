@@ -31,7 +31,7 @@ const genDiff = (file1, file2) => {
     readFile2 = workWithJson(file2);
   }
 
-  console.log(`{\n${compare(readFile1, readFile2)}}`);
+  return `{\n${compare(readFile1, readFile2)}}`;
 };
 
 export default genDiff;
