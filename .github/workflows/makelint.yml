@@ -12,7 +12,6 @@ jobs:
       matrix:
         node-version: [14.x]
     steps:
-      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -23,9 +22,9 @@ jobs:
       - run: make test
       
       - name: Test & Publish Code Climat
-      uses: paambaati/codeclimate-action@v3.0.0
-      env: 
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-      coverageCommand: make test-coverage
-      debug: true
+        uses: paambaati/codeclimate-action@v3.0.0
+        env: 
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true
