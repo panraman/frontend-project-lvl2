@@ -12,3 +12,6 @@
 
 ### Gendiff launch example with JSON: 
 [![asciicast](https://asciinema.org/a/PSZzxyZifVMqHdr1LEw36ZZhF.svg)](https://asciinema.org/a/PSZzxyZifVMqHdr1LEw36ZZhF)
+
+### Gendiff launch example with YAML: 
+[![asciicast](https://asciinema.org/a/XhrCUlLCmSOAaoT6Lu8f5MiFF.svg)](https://asciinema.org/a/XhrCUlLCmSOAaoT6Lu8f5MiFF)
