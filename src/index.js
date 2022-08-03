@@ -1,30 +1,18 @@
 import { cwd } from 'process';
 import path from 'path';
 import { readFileSync } from 'fs';
-import compare from './compare.js';
+import stylish from './stylish.js';
 import parser from './parsers.js';
+import makeTree from './formatter.js';
 
 const genDiff = (file1, file2) => {
-  const findFile = (file) => readFileSync(path.resolve(cwd(), '__fixtures__/', file), 'utf-8');
+  const fileContent = (file) => readFileSync(path.resolve(cwd(), '__fixtures__/', file), 'utf-8');
 
-  const getFormat = (file) => path.extname(file);
+  const readFile1 = parser(fileContent(file1), file1);
+  const readFile2 = parser(fileContent(file2), file2);
 
-  let readFile1;
-  let readFile2;
-
-  if (getFormat(file1) === '.json') {
-    readFile1 = parser('.json', findFile(file1));
-  }
-  if (getFormat(file1) === '.json') {
-    readFile2 = parser('.json', findFile(file2));
-  }
-  if (getFormat(file1) === '.yml' || getFormat(file1) === '.yaml') {
-    readFile1 = parser('.yml', findFile(file1));
-  }
-  if (getFormat(file1) === '.yml' || getFormat(file1) === '.yaml') {
-    readFile2 = parser('.yml', findFile(file2));
-  }
-  return `{\n${compare(readFile1, readFile2)}}`;
+  const result = stylish(readFile1, readFile2);
+  return makeTree(result);
 };
 
 export default genDiff;
