@@ -15,3 +15,6 @@
 
 ### Gendiff launch example with YAML: 
 [![asciicast](https://asciinema.org/a/XhrCUlLCmSOAaoT6Lu8f5MiFF.svg)](https://asciinema.org/a/XhrCUlLCmSOAaoT6Lu8f5MiFF)
+
+### Gendiff launch example with nested structures JSON and YAML:
+[![asciicast](https://asciinema.org/a/FYlr4Fd2Dq0kNBihcHINMxMW8.svg)](https://asciinema.org/a/FYlr4Fd2Dq0kNBihcHINMxMW8)
