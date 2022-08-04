@@ -1,29 +1,46 @@
 import _ from 'lodash';
-import compare from './compare.js';
 
-const stylish = (obj1, obj2) => {
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
-  const allSortedKeys = _.sortBy(_.uniq([...keys1, ...keys2]));
+const stringify = (data, depth, space) => {
+  if (!_.isObject(data)) {
+    return `${data}`;
+  }
+  const signSpace = space.repeat(depth + 1);
+  const bracketIndent = space.repeat(depth);
+  const lines = Object.entries(data)
+    .map(([key, value]) => `${signSpace}${key}: ${stringify(value, depth + 1, space)}`);
 
-  return allSortedKeys.map((key) => {
-    const value1 = obj1[key];
-    const value2 = obj2[key];
-    const comparedValues = compare(value1, value2);
-
-    if (_.isObject(value1) && _.isObject(value2)) {
-      return { key, status: 'object', value: stylish(value1, value2) };
-    } if (comparedValues === 'firstValue') {
-      return { key, status: 'addFirst', value: value1 };
-    } if (comparedValues === 'secondValue') {
-      return { key, status: 'addSecond', value: value2 };
-    } if (comparedValues === 'equal') {
-      return { key, status: 'equal', value: value1 };
-    }
-    return {
-      key, status: 'addBoth', value1, value2,
-    };
-  });
+  return ['{', ...lines, `${bracketIndent}}`].join('\n');
 };
 
-export default stylish;
+const signes = {
+  plus: '+',
+  minus: '-',
+  emptiness: ' ',
+};
+
+const makeTree = (object) => {
+  const space = '    ';
+  const iter = (tree, depth) => tree.map((item) => {
+    const currentSpace = space.repeat(depth);
+    const signSpace = currentSpace.slice(2);
+
+    const buildObject = (value, sign) => `${signSpace}${sign} ${item.key}: ${stringify(value, depth, space)}`;
+
+    switch (item.status) {
+      case 'addFirst':
+        return buildObject(item.value, signes.minus);
+      case 'addSecond':
+        return buildObject(item.value, signes.plus);
+      case 'equal':
+        return buildObject(item.value, signes.emptiness);
+      case 'addBoth':
+        return [buildObject(item.value1, signes.minus), buildObject(item.value2, signes.plus)].join('\n');
+      default:
+        return `${currentSpace}${item.key}: ${['{', ...iter(item.value, depth + 1), `${currentSpace}}`].join('\n')}`;
+    }
+  });
+  const result = iter(object, 1);
+  return ['{', ...result, '}'].join('\n');
+};
+
+export default makeTree;

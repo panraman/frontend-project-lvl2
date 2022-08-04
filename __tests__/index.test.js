@@ -20,13 +20,13 @@ test('check gendiff with json', () => {
   expect(genDiff(full1json, full1json)).toEqual(readFile('compare1_1.txt'));
 });
 
-const full1yml = getFixturePath('full1.yml');
-const full2jyml = getFixturePath('full2.yml');
-const emptyFileyml = getFixturePath('empty.yml');
+const full1Yml = getFixturePath('full1.yml');
+const full2jYml = getFixturePath('full2.yml');
+const emptyFileYml = getFixturePath('empty.yml');
 
 test('check gendiff with yml', () => {
-  expect(genDiff(full1yml, emptyFileyml)).toEqual(readFile('compare1_0.txt'));
-  expect(genDiff(emptyFileyml, full1yml)).toEqual(readFile('compare0_1.txt'));
-  expect(genDiff(full1yml, full2jyml)).toEqual(readFile('compare1_2.txt'));
-  expect(genDiff(full1yml, full1yml)).toEqual(readFile('compare1_1.txt'));
+  expect(genDiff(full1Yml, emptyFileYml)).toEqual(readFile('compare1_0.txt'));
+  expect(genDiff(emptyFileYml, full1Yml)).toEqual(readFile('compare0_1.txt'));
+  expect(genDiff(full1Yml, full2jYml)).toEqual(readFile('compare1_2.txt'));
+  expect(genDiff(full1Yml, full1Yml)).toEqual(readFile('compare1_1.txt'));
 });
