@@ -30,3 +30,7 @@ test('check gendiff with yml', () => {
   expect(genDiff(full1Yml, full2jYml)).toEqual(readFile('compare1_2.txt'));
   expect(genDiff(full1Yml, full1Yml)).toEqual(readFile('compare1_1.txt'));
 });
+
+test('check gendiff plain', () => {
+  expect(genDiff(full1Yml, full2jYml, 'plain')).toEqual(readFile('property1_2.txt'));
+});

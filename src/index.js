@@ -3,7 +3,7 @@ import path from 'path';
 import { readFileSync } from 'fs';
 import compareValues from './compareValues.js';
 import parser from './parsers.js';
-import formater from './formater.js';
+import formatter from './formatters/index.js';
 
 const genDiff = (file1, file2, format = 'stylish') => {
   const fileContent = (file) => readFileSync(path.resolve(cwd(), '__fixtures__/', file), 'utf-8');
@@ -12,7 +12,7 @@ const genDiff = (file1, file2, format = 'stylish') => {
   const readFile2 = parser(fileContent(file2), file2);
 
   const result = compareValues(readFile1, readFile2);
-  return formater(result, format);
+  return formatter(result, format);
 };
 
 export default genDiff;
