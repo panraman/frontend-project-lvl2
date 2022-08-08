@@ -21,3 +21,6 @@
 
 ### Gendiff launch example with format selection plain:
 [![asciicast](https://asciinema.org/a/fYgttqriIgayXhK8s68mreBd6.svg)](https://asciinema.org/a/fYgttqriIgayXhK8s68mreBd6)
+
+### Gendiff launch example with format selection json:
+[![asciicast](https://asciinema.org/a/ChfnKoEdhUWNzgGMdwjyvSX3U.svg)](https://asciinema.org/a/ChfnKoEdhUWNzgGMdwjyvSX3U)
