@@ -5,13 +5,21 @@ import compareValues from './compareValues.js';
 import parser from './parsers.js';
 import formatter from './formatters/index.js';
 
-const genDiff = (file1, file2, format = 'stylish') => {
-  const fileContent = (file) => readFileSync(path.resolve(cwd(), '__fixtures__/', file), 'utf-8');
+const getAbsolutePath = (file) => path.resolve(cwd(), file);
+const getFormat = (file) => path.extname(file).slice(1);
 
-  const readFile1 = parser(fileContent(file1), file1);
-  const readFile2 = parser(fileContent(file2), file2);
+const readContent = (filePath) => {
+  const absolutePath = getAbsolutePath(filePath);
+  const file = readFileSync(absolutePath, 'utf-8');
+  const format = getFormat(filePath);
+  return parser(file, format);
+};
 
-  const result = compareValues(readFile1, readFile2);
+const genDiff = (filePath1, filePath2, format = 'stylish') => {
+  const file1 = readContent(filePath1);
+  const file2 = readContent(filePath2);
+  const result = compareValues(file1, file2);
+
   return formatter(result, format);
 };
 

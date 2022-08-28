@@ -1,13 +1,10 @@
 import yaml from 'js-yaml';
-import path from 'path';
 
 const parser = (fileContent, fileName) => {
-  const getFormat = (file) => path.extname(file);
-
   let result;
-  if (getFormat(fileName) === '.json') {
+  if (fileName === 'json') {
     result = JSON.parse(fileContent);
-  } if (getFormat(fileName) === '.yml') {
+  } if (fileName === 'yml' || fileName === 'yaml') {
     result = yaml.load(fileContent);
   }
   return result;
