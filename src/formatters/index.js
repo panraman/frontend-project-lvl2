@@ -3,14 +3,16 @@ import plain from './plain.js';
 import makeJson from './json.js';
 
 const formatter = (data, format) => {
-  let result;
-  if (format === 'stylish') {
-    result = makeTree(data);
-  } if (format === 'plain') {
-    result = plain(data);
-  } if (format === 'json') {
-    result = makeJson(data);
-  } return result;
+  switch (format) {
+    case 'stylish':
+      return makeTree(data);
+    case 'plain':
+      return plain(data);
+    case 'json':
+      return makeJson(data);
+    default:
+      return 'error';
+  }
 };
 
 export default formatter;

@@ -1,13 +1,16 @@
 import yaml from 'js-yaml';
 
 const parser = (fileContent, fileName) => {
-  let result;
-  if (fileName === 'json') {
-    result = JSON.parse(fileContent);
-  } if (fileName === 'yml' || fileName === 'yaml') {
-    result = yaml.load(fileContent);
+  switch (fileName) {
+    case 'json':
+      return JSON.parse(fileContent);
+    case 'yml':
+      return yaml.load(fileContent);
+    case 'yaml':
+      return yaml.load(fileContent);
+    default:
+      return 'error';
   }
-  return result;
 };
 
 export default parser;
