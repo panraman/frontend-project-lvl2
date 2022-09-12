@@ -1,8 +1,8 @@
-System requirements:
+### System requirements:
   1. Node.js no lower version 12
   2. Operating system Windows
 
-For install:
+### For install:
   1. Clone repository: git@github.com:panraman/frontend-project-lvl2.git
   2. Run the command "make install".
 
