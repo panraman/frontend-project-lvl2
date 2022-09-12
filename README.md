@@ -1,3 +1,11 @@
+System requirements:
+  1. Node.js no lower version 12
+  2. Operating system Windows
+
+For install:
+  1. Clone repository: git@github.com:panraman/frontend-project-lvl2.git
+  2. Run the command "make install".
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/panraman/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/panraman/frontend-project-lvl2/actions)
 
