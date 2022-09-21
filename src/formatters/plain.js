@@ -3,9 +3,11 @@ import _ from 'lodash';
 const valueEditor = (value) => {
   if (typeof (value) === 'string') {
     return `'${value}'`;
+  } if (value === null) {
+    return 'null';
   } if (_.isObject(value)) {
     return '[complex value]';
-  } return value;
+  } return value.toString();
 };
 
 const constructor = (value, keyName) => {
@@ -24,16 +26,16 @@ const plain = (data) => {
   const result = [];
 
   const iter = (tree, key) => tree.map((item) => {
-    const keyName = [];
+    const path = [];
     if (key) {
-      keyName.push(key);
+      path.push(key);
     } if (item.status === 'object') {
-      keyName.push(item.key);
-      const fullKey = keyName.join('.');
+      path.push(item.key);
+      const fullKey = path.join('.');
       return iter(item.value, fullKey);
     }
-    const Makename = (arr) => (arr[0] ? `${keyName}.${item.key}` : `${item.key}`);
-    const name = Makename(keyName);
+    const makename = (arr) => (arr[0] ? `${path}.${item.key}` : `${item.key}`);
+    const name = makename(path);
     const string = constructor(item, name);
     if (string !== 'error') {
       result.push(string);

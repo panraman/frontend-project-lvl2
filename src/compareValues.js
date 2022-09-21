@@ -9,13 +9,13 @@ function compareValues(obj1, obj2) {
     const value1 = obj1[key];
     const value2 = obj2[key];
 
-    if (_.isObject(value1) && _.isObject(value2)) {
+    if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
       return { key, status: 'object', value: compareValues(value1, value2) };
-    } if (value1 === value2) {
+    } if (_.isEqual(value1, value2)) {
       return { key, status: 'equal', value: value1 };
-    } if (value2 === undefined) {
+    } if (!_.has(obj2, key)) {
       return { key, status: 'addFirst', value: value1 };
-    } if (value1 === undefined) {
+    } if (!_.has(obj1, key)) {
       return { key, status: 'addSecond', value: value2 };
     }
     return {
