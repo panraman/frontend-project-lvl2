@@ -9,8 +9,13 @@ const getAbsolutePath = (file) => path.resolve(cwd(), file);
 const getFormat = (file) => path.extname(file).slice(1);
 
 const genDiff = (filePath1, filePath2, format = 'stylish') => {
-  const file1 = parser(readFileSync(getAbsolutePath(filePath1), 'utf-8'), getFormat(filePath1)); // не слишком длинный и неразборчивый код так получается?
-  const file2 = parser(readFileSync(getAbsolutePath(filePath2), 'utf-8'), getFormat(filePath2)); // или я не совсем правильно понял как readContent поместить в гендиф?
+  const readedFile1 = readFileSync(getAbsolutePath(filePath1), 'utf-8');
+  const readedFile2 = readFileSync(getAbsolutePath(filePath2), 'utf-8');
+  const format1 = getFormat(filePath1);
+  const format2 = getFormat(filePath2);
+
+  const file1 = parser(readedFile1, format1);
+  const file2 = parser(readedFile2, format2);
   const result = compareValues(file1, file2);
 
   return formatter(result, format);

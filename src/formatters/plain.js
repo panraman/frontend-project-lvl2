@@ -26,12 +26,15 @@ const plain = (data) => {
   const result = [];
 
   const iter = (tree, key) => tree.map((item) => {
-    const path = [];
+    let path = '';
     if (key) {
-      path.push(key);
+      path += key;
     } if (item.status === 'object') {
-      path.push(item.key);
-      const fullKey = path.join('.');
+      if (path === '') {
+        path += item.key;
+      } else path += ` ${item.key}`;
+      const newPath = path.split(' ');
+      const fullKey = newPath.join('.');
       return iter(item.value, fullKey);
     }
     const makename = (arr) => (arr[0] ? `${path}.${item.key}` : `${item.key}`);
