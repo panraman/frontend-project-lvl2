@@ -23,7 +23,7 @@ const constructor = (value, keyName) => {
 };
 
 const plain = (data) => {
-  const result = [];
+  let result = '';
 
   const iter = (tree, key) => tree.map((item) => {
     const path = [key];
@@ -35,12 +35,12 @@ const plain = (data) => {
     const name = makename(path);
     const string = constructor(item, name);
     if (string !== 'error') {
-      result.push(string);
+      result += `${string}\n`;
     } return result;
   });
 
   iter(data);
-  return result.join('\n');
+  return result.trim();
 };
 
 export default plain;
