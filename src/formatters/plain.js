@@ -32,7 +32,7 @@ const plain = (data) => {
     }
     if (item.status === 'object') {
       const fullKey = [...path, item.key];
-      return iter(item.value, fullKey);
+      return iter(item.value, fullKey.join('.'));
     }
     const makename = (arr) => (arr[0] ? `${path}.${item.key}` : `${item.key}`);
     const name = makename(path);
